@@ -1,3 +1,6 @@
+Modulo 1 - Aplicação de cadastro
+
+
 pagina 1 - inicial
 
 apresentação da página com botão iniciar cadastro
@@ -20,5 +23,12 @@ processamento de requisitos :
 
 - verificar se criança já foi inscrita através do cpf da criança (mensagem de criança 
 já foi cadastrada em outra turma), mostrar turma e data já inscrita.
+
+- todos os campos devem ser preenchidos
+
+- salvar informações no banco de dados
+
+
+Modulo 2 - Acesso ao banco de dados com consulta por data do dia 28 de julho a 01 de agosto e geração de arquivo csv com os dados
 
 
