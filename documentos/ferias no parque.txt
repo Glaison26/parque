@@ -1,0 +1,24 @@
+pagina 1 - inicial
+
+apresentação da página com botão iniciar cadastro
+
+pagina 2 - entrada de data e turno
+
+digitação da data entre 28 de julho e 1 de agosto
+escolha do turno
+
+ processamento de requisitos :
+
+ - verificar validade da data.
+
+ - verificar se se o turno tem disponibilidade no dia(no máximo 100 inscrições por dia/turno
+
+
+pagina 3 - entrada de dados da inscrição da criança
+
+processamento de requisitos :
+
+- verificar se criança já foi inscrita através do cpf da criança (mensagem de criança 
+já foi cadastrada em outra turma), mostrar turma e data já inscrita.
+
+
