@@ -17,13 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         // checo o numero de cadastrador na data com o mesmo turno no máximo 100 inscrições por dia / turno
         // sql para apurar
+        $c_turno = $_POST['turno'];
         $c_sql = "SELECT COUNT(*) AS quantidade FROM criancas 
-                 WHERE criancas.`data`='2025-07-28' AND turno ='1'";
+                 WHERE criancas.`data`='$dt_informada' AND turno ='$c_turno'";
         $result = $conection->query($c_sql);
         $c_linha = $result->fetch_assoc();
         $i_qtd = $c_linha['quantidade'];
         // checo a quantidade apurada
-        if ($i_qtd > 1) {
+        if ($i_qtd > 100) {
             $msg_erro = 'Desculpe, não há mais vagas para a data e turno selecionado. Tente outra data ou turno!!!';
             break;
         }
