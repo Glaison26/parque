@@ -1,5 +1,36 @@
 <?php
 include("cabecalho.php");
+include("conexao.php");
+$msg_erro = "";  // variável de erro de consistencia
+// metodo post para submit da proxima pagina
+// consistencia de número de vagas e data
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    do {
+        $dt_informada = date("Y-m-d", strtotime(str_replace('/', '-',  $_POST['data'])));;
+        $dt_inicio =  date('Y-m-d', strtotime('2025-07-28'));
+        $dt_fim = date('Y-m-d', strtotime('2025-08-03'));
+        // checagem de intervalo de data do evento 
+        if (($dt_informada < $dt_inicio) || ($dt_informada > $dt_fim)) {
+            $msg_erro = 'Inscrições somente serão permitidas no período do dia 28 de julho a 1o. de agosto de 2025!!!';
+            break;
+        }
+        // checo o numero de cadastrador na data com o mesmo turno no máximo 100 inscrições por dia / turno
+        // sql para apurar
+        $c_sql = "SELECT COUNT(*) AS quantidade FROM criancas 
+                 WHERE criancas.`data`='2025-07-28' AND turno ='1'";
+        $result = $conection->query($c_sql);
+        $c_linha = $result->fetch_assoc();
+        $i_qtd = $c_linha['quantidade'];
+        // checo a quantidade apurada
+        if ($i_qtd > 1) {
+            $msg_erro = 'Desculpe, não há mais vagas para a data e turno selecionado. Tente outra data ou turno!!!';
+            break;
+        }
+
+        header('location: /parque/cadastro.php'); // aqui direciono para captura de foto da logo da OSC "0"
+    } while (false);
+}
 
 ?>
 
@@ -19,6 +50,16 @@ include("cabecalho.php");
         <div class="alert alert-success">
             <strong>Digite a data <b>entre os dias 28 de julho ao dia 1o. de agosto</b> e o turno desejado para inscrição no evento férias no parque </strong>
         </div>
+        <?php
+        if (!empty($msg_erro)) {
+            echo "
+            <div class='alert alert-danger' role='alert'>
+                <h4>Menssagem  do sistema :$msg_erro</h4>
+            </div>
+                ";
+        }
+        ?>
+
         <!-- formulário com data e turno -->
         <form method="post">
             <hr>
@@ -32,10 +73,10 @@ include("cabecalho.php");
 
                 <div class="col-sm-3">
                     <p>
-                    <strong>Escolha o turno </strong>
+                        <strong>Escolha o turno </strong>
                     </p>
                     <div class="form-check">
-                        <input type="radio" name="turno" id="turno1" Value="1" requered>
+                        <input type="radio" name="turno" id="turno1" Value="1" required>
                         <label class="form-check-label" for="turno1">
                             Das 8h às 11h30
                         </label>
