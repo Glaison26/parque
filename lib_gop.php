@@ -126,3 +126,11 @@ function gravaData($data)
         return '';
     }
 }
+
+
+function calcularIdade($dataNascimento) {
+  $dataNascimentoObj = DateTime::createFromFormat('d/m/Y', $dataNascimento);
+  $dataAtual = new DateTime();
+  $diferenca = $dataAtual->diff($dataNascimentoObj);
+  return $diferenca->y;
+}

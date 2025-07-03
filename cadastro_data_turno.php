@@ -1,4 +1,5 @@
 <?php
+session_start(); // icicio de session
 include("cabecalho.php");
 include("conexao.php");
 $msg_erro = "";  // variável de erro de consistencia
@@ -28,7 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $msg_erro = 'Desculpe, não há mais vagas para a data e turno selecionado. Tente outra data ou turno!!!';
             break;
         }
-
+        // capturo turno e data selecionada nas variáveis globais
+        $_SESSION['turno'] = $c_turno;
+        $_SESSION['data'] = $dt_informada;
         header('location: /parque/cadastro.php'); // aqui direciono para captura de foto da logo da OSC "0"
     } while (false);
 }
