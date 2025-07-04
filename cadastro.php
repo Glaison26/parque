@@ -14,8 +14,8 @@ $msg_erro = "";  // variável de erro de consistencia
 // inicio do metodo post para consistir e gravar os dados
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     do {
-        $c_nome_responsavel = $_POST['nome_responsavel'];
-        $c_nome_crianca = $_POST['nome_crianca'];
+        $c_nome_responsavel = rtrim($_POST['nome_responsavel']);
+        $c_nome_crianca = rtrim($_POST['nome_crianca']);
         $c_cpf_crianca = $_POST['cpf_crianca'];
         $c_cpf_responsavel = $_POST['cpf_responsavel'];
         $c_data_nasc = $_POST['data_nas'];
@@ -55,6 +55,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $msg_erro = "Criança já tem cadastro realizado no dia " . $c_data . " turno de " . $c_turno;
             break;
         }
+        // verifico se já existe um nome cadstrado
+        $c_sql = "select count(*) as quantidade from criancas where criancas.nome_crianca = '$c_nome_crianca'";
+        //echo $c_sql;
+        $result = $conection->query($c_sql);
+        $c_linha = $result->fetch_assoc();
+        $i_qtd = $c_linha['quantidade'];
+        if ($i_qtd > 0) {
+            // sql para pegar data e turno da criança já cadastrada
+            $c_sql = "select criancas.data, criancas.turno from criancas where criancas.nome_crianca = '$c_nome_crianca'";
+            $result = $conection->query($c_sql);
+            $c_linha = $result->fetch_assoc();
+
+            $c_data = date("d-m-Y", strtotime(str_replace('/', '-', $c_linha['data'])));
+            if ($c_linha['turno'] == '1')
+                $c_turno = "Das 8h às 11h30";
+            else
+                $c_turno = " Das 13h às 16h30";
+            $msg_erro = "Criança com este nome já tem cadastro realizado no dia " . $c_data . " turno de " . $c_turno;
+            break;
+        }
+
         // consistencia de idade somente com idade superior a 3 anos
         $dataNascimento = $_POST['data_nas'];
         $date = new DateTime($dataNascimento);
@@ -125,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form method="post">
             <hr>
             <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Nome da Criança </label>
+                <label class="col-sm-2 col-form-label">Nome completo da Criança </label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" name="nome_crianca" value="<?php echo $c_nome_crianca ?>" required>
                 </div>
@@ -137,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
             <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Nome do mãe ou responsável </label>
+                <label class="col-sm-2 col-form-label">Nome completo da mãe ou responsável </label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" name="nome_responsavel" value="<?php echo $c_nome_responsavel ?>" required>
                 </div>

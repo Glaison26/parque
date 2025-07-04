@@ -29,8 +29,8 @@
     <div class="panel panel-primary class">
         <div class="panel-heading text-center">
             <h4></h4>
-            <h4>Prefeitura Municipal de Sabará</h4>
-            <h5>Projeto Férias no Parque - Cadastro de Crianças participantes</h5>
+            <h2>Prefeitura Municipal de Sabará</h2>
+            <h4>Projeto Férias no Parque - Cadastro de Crianças participantes</h4>
         </div>
     </div>
 </div>

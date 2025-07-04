@@ -1,3 +1,4 @@
+<!-- back end da aplicação -->
 <?php
 session_start(); // icicio de session
 include("cabecalho.php");
@@ -25,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $c_linha = $result->fetch_assoc();
         $i_qtd = $c_linha['quantidade'];
         // checo a quantidade apurada
-        if ($i_qtd > 100) {
+        if ($i_qtd >= 100) {
             $msg_erro = 'Desculpe, não há mais vagas para a data e turno selecionado. Tente outra data ou turno!!!';
             break;
         }
@@ -38,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 ?>
 
+<!-- Front end da aplicação -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,8 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <div class="container -my5">
-
-
         <div class="alert alert-success">
             <strong>Digite a data <b>entre os dias 28 de julho ao dia 1o. de agosto</b> e o turno desejado para inscrição no evento férias no parque </strong>
         </div>
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div class="col-sm-3">
                     <p>
-                        <strong>Escolha o turno </strong>
+                        <strong>Escolha o período </strong>
                     </p>
                     <div class="form-check">
                         <input type="radio" name="turno" id="turno1" Value="1" required>
