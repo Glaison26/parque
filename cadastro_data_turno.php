@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     do {
         $dt_informada = date("Y-m-d", strtotime(str_replace('/', '-',  $_POST['data'])));;
         $dt_inicio =  date('Y-m-d', strtotime('2025-07-28'));
-        $dt_fim = date('Y-m-d', strtotime('2025-08-03'));
+        $dt_fim = date('Y-m-d', strtotime('2025-08-01'));
         // checagem de intervalo de data do evento 
         if (($dt_informada < $dt_inicio) || ($dt_informada > $dt_fim)) {
             $msg_erro = 'Inscrições somente serão permitidas no período do dia 28 de julho a 1o. de agosto de 2025!!!';
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($msg_erro)) {
             echo "
             <div class='alert alert-danger' role='alert'>
-                <h4>Menssagem  do sistema :$msg_erro</h4>
+                <h4>$msg_erro</h4>
             </div>
                 ";
         }
