@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="panel default class" class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" align="center">
                         <div class="panel-heading">
-                            <img class="rounded mx-auto d-block" class="img-responsive" src="\parque\imagens\prefeitura.png" class="img-fluid" style="height :150px" style="width:150px">
+                            <img class="rounded mx-auto d-block" class="img-responsive" src="\parque\imagens\prefeitura.png" class="img-fluid" style="height :100px" style="width:100px">
                         </div>
                     </div>
                 </div>

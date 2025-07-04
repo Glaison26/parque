@@ -9,7 +9,7 @@ include("../conexao.php");
 
 <!DOCTYPE html>
 <html lang="en">
-    <!-- script para chamar exclusão -->
+<!-- script para chamar exclusão -->
 <script language="Javascript">
     function confirmacao(id) {
         var resposta = confirm("Deseja remover esse registro?");
@@ -79,6 +79,7 @@ include("../conexao.php");
                             <th scope="col">Período</th>
                             <th scope="col">Nome Criança</th>
                             <th scope="col">Data Nasc.</th>
+                            <th scope="col">Idade</th>
                             <th scope="col">CPF Criança</th>
                             <th scope="col">Responsável</th>
                             <th scope="col">CPF Resposável</th>
@@ -107,12 +108,18 @@ include("../conexao.php");
                         while ($c_linha = $result->fetch_assoc()) {
                             $c_data_evento = date("d-m-Y", strtotime(str_replace('/', '-', $c_linha['data'])));
                             $c_data_nasc = date("d-m-Y", strtotime(str_replace('/', '-', $c_linha['datanasc'])));
+                            // calculo de idade
+                            $dataNascimento = $c_linha['datanasc'];
+                            $date = new DateTime($dataNascimento);
+                            $interval = $date->diff(new DateTime(date('Y-m-d')));
+                            $i_idade = $interval->format('%Y Anos');
                             echo "
                                 <tr>
                                     <td>$c_data_evento</td>
                                     <td>$c_linha[desc_turno]</td>
                                     <td>$c_linha[nome_crianca]</td>
                                     <td>$c_data_nasc</td>
+                                    <td>$i_idade</td>
                                     <td>$c_linha[cpf_crianca]</td>
                                     <td>$c_linha[nome_responsavel]</td>
                                     <td>$c_linha[cpf_responsavel]</td>
