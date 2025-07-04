@@ -70,7 +70,7 @@ include("../conexao.php");
 
         <!-- aba trabalhadores suas-->
         <div role="tabpanel" class="tab-pane" id="suas">
-            <a class='btn btn btn-sm' class="btn btn-primary" href='\cmas\resultados\gera_xls.php?id=2'><img src='\parque\imagens\excell.png' alt='' width='25' height='25'> Gerar Planilha</a>
+            <a class='btn btn btn-sm' class="btn btn-primary" href='\parque\lista\gera_xls.php?id=2'><img src='\parque\imagens\excell.png' alt='' width='25' height='25'> Gerar Planilha</a>
             <div style="padding-top:15px;padding-left:20px;">
                 <table class="table table display table-active tablista">
                     <thead class="thead">
