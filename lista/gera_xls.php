@@ -22,8 +22,7 @@ $resultado = fopen("php://output", 'w');
 
 // Criar o cabeçalho do Excel - Usar a função mb_convert_encoding para converter carateres especiais'
 // faço a Leitura da tabela com sql
-if ($parametro == '1') {
-    $c_sql = "SELECT criancas.id, criancas.nome_crianca,criancas.`data`, criancas.turno, criancas.datanasc,
+$c_sql = "SELECT criancas.id, criancas.nome_crianca,criancas.`data`, criancas.turno, criancas.datanasc,
                                 criancas.cpf_crianca, criancas.nome_responsavel, criancas.cpf_responsavel, criancas.telefone,
                                 case
                                 when criancas.turno ='1' then 'Das 8h às 11h30'
@@ -31,19 +30,19 @@ if ($parametro == '1') {
                                 END AS desc_turno
                                 FROM criancas
                                 ORDER BY criancas.`data`";
-    $result = $conection->query($c_sql);
-    $cabecalho = [
-        'Id',
-        'Nome Criança',
-        'Data',
-        'Período',
-        'Data Nascimento',
-        'cpf criança',
-        'Responsável',
-        'cpf Responsável',
+$result = $conection->query($c_sql);
+$cabecalho = [
+    'Id',
+    'Nome Criança',
+    'Data',
+    'Período',
+    'Data Nascimento',
+    'cpf criança',
+    'Responsável',
+    'cpf Responsável',
 
-    ];
-}
+];
+
 
 
 $cabecalho = mb_convert_encoding($cabecalho, "ISO-8859-1", "UTF-8");

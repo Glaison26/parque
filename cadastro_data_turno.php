@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $dt_fim = date('Y-m-d', strtotime('2025-08-01'));
         // checagem de intervalo de data do evento 
         if (($dt_informada < $dt_inicio) || ($dt_informada > $dt_fim)) {
-            $msg_erro = 'Inscrições somente serão permitidas no período do dia 28 de julho a 1o. de agosto de 2025!!!';
+            $msg_erro = 'Inscrições somente serão permitidas no período do dia 28 de julho a 1 de agosto de 2025!!!';
             break;
         }
         // checo o numero de cadastrador na data com o mesmo turno no máximo 100 inscrições por dia / turno
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="container -my5">
         <div class="alert alert-success">
-            <strong>Digite a data <b>entre os dias 28 de julho ao dia 1o. de agosto</b> e o turno desejado para inscrição no evento férias no parque </strong>
+            <strong>Digite a data <b>entre os dias 28 de julho ao dia 1 de agosto</b> e o turno desejado para inscrição no evento férias no parque </strong>
         </div>
         <?php
         if (!empty($msg_erro)) {

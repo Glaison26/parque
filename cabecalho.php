@@ -30,7 +30,7 @@
         <div class="panel-heading text-center">
             <h4></h4>
             <h2>Prefeitura Municipal de Sabará</h2>
-            <h4>Projeto Férias no Parque - Cadastro de Crianças participantes</h4>
+            <h4>Projeto Férias no Bosque - Cadastro de Crianças participantes</h4>
         </div>
     </div>
 </div>
