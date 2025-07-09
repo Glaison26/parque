@@ -1,5 +1,7 @@
 <!-- back end da página -->
 <?php
+session_start(); // icicio de session
+$_SESSION['controle']='S';
 include("cabecalho.php"); // arquivo de cabeçalho de página
 ?>
 

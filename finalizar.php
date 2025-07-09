@@ -1,7 +1,7 @@
 <?php
-
+session_start(); // icicio de session
 include("cabecalho.php");
-
+$_SESSION['controle']='N';
 ?>
 
 <!DOCTYPE html>

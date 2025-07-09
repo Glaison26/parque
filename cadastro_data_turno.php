@@ -1,6 +1,12 @@
 <!-- back end da aplicação -->
 <?php
 session_start(); // icicio de session
+if (!isset($_SESSION['controle'])) {
+    die('Acesso não autorizado!!!');
+}
+if ($_SESSION['controle']!='S'){
+    die('Acesso não autorizado!!!');
+}
 include("cabecalho.php");
 include("conexao.php");
 $msg_erro = "";  // variável de erro de consistencia

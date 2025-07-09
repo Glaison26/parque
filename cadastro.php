@@ -1,5 +1,11 @@
 <?php
 session_start(); // icicio de session
+if (!isset($_SESSION['controle'])) {
+    die('Acesso não autorizado!!!');
+}
+if ($_SESSION['controle'] != 'S') {
+    die('Acesso não autorizado!!!');
+}
 include("cabecalho.php");
 include("conexao.php");
 include("lib_gop.php");
@@ -14,6 +20,9 @@ $msg_erro = "";  // variável de erro de consistencia
 // inicio do metodo post para consistir e gravar os dados
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     do {
+        if ($_SESSION['controle'] != 'S') {
+            die('Operação não autorizada, entre novamente na aplicação!!!');
+        }
         $c_nome_responsavel = rtrim($_POST['nome_responsavel']);
         $c_nome_crianca = rtrim($_POST['nome_crianca']);
         $c_cpf_crianca = $_POST['cpf_crianca'];
@@ -80,8 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $dataNascimento = $_POST['data_nas'];
         $date = new DateTime($dataNascimento);
         $interval = $date->diff(new DateTime(date('Y-m-d')));
-        $i_idade= $interval->format('%Y');
-        
+        $i_idade = $interval->format('%Y');
+
         if ($i_idade < 3) {
             $msg_erro = "Criança deve ter acima de 3 anos de idade";
             break;
@@ -130,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         <div class="alert alert-success">
-            <strong>Digite a data <b>entre os dias 28 de julho ao dia 1o. de agosto</b> e o turno desejado para inscrição no evento férias no parque </strong>
+            <strong>Digite a data <b>entre os dias 28 de julho ao dia 1 de agosto</b> e o turno desejado para inscrição no evento férias no parque </strong>
         </div>
         <?php
         if (!empty($msg_erro)) {
@@ -185,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <!-- Salvar informações  -->
             <hr>
             <div class="container-fluid" class="col-sm-0">
-                
+
                 <button type="submit" class="btn btn-primary"><span class='glyphicon glyphicon-floppy-saved'></span> Salvar</button>
                 <a class='btn btn-danger' href='/parque/index.php'><span class='glyphicon glyphicon-remove'></span> Cancelar</a>
 
