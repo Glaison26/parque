@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $c_linha = $result->fetch_assoc();
         $i_qtd = $c_linha['quantidade'];
         // checo a quantidade apurada
-        if ($i_qtd >= 100) {
+        if ($i_qtd >= 50) {
             $msg_erro = 'Desculpe, não há mais vagas para a data e turno selecionado. Tente outra data ou turno!!!';
             break;
         }
@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <strong>Digite a data <b>entre os dias 28 de julho ao dia 1 de agosto</b> e o turno desejado para inscrição no evento férias no parque </strong>
         </div>
         <?php
+        // mesnagens de erro
         if (!empty($msg_erro)) {
             echo "
             <div class='alert alert-danger' role='alert'>
