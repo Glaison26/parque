@@ -98,6 +98,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // monto inserção do registro via sql
         $d_data = $_SESSION['data'];
         $c_turno = $_SESSION['turno'];
+        $c_cpf_crianca = str_replace('.','',$c_cpf_crianca);
+        $c_cpf_crianca = str_replace('-','',$c_cpf_crianca);
+        $c_cpf_responsavel = str_replace('.','',$c_cpf_responsavel);
+        $c_cpf_responsavel = str_replace('-','',$c_cpf_responsavel);
         $c_sql = "insert into criancas (datanasc, nome_crianca,cpf_crianca, nome_responsavel, cpf_responsavel,data,turno,telefone)
         value ('$c_data_nasc', '$c_nome_crianca', '$c_cpf_crianca', '$c_nome_responsavel','$c_cpf_responsavel','$d_data','$c_turno', '$c_telefone')";
         echo $c_sql;
